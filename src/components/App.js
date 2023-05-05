@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Login from "./Login";
-import Navbar from "./Navbar";
+import NavBar from "./NavBar";
+import MoviesPage from "./MoviesPage";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [movies, setMovies] = useState({
+    1: { id: 1, title: "A River Runs Through It" },
+    2: { id: 2, title: "Se7en" },
+    3: { id: 3, title: "Inception" },
+  });
 
   return (
     <div>
-      <Navbar setIsLoggedIn={setIsLoggedIn} />
+      <NavBar />
       <Switch>
-        <Route exact path="/about">
-          <About />
-        </Route>
-        <Route exact path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn} />
+        <Route path="/movies">
+          <MoviesPage movies={movies} />
         </Route>
         <Route exact path="/">
-          <Home isLoggedIn={isLoggedIn} />
+          <div>Home</div>
         </Route>
       </Switch>
     </div>
@@ -27,3 +26,4 @@ function App() {
 }
 
 export default App;
+
